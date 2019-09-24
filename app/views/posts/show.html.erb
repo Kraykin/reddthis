@@ -1,13 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Content:</strong>
   <%= @post.content %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @post.user.username %>
+  <%= link_to @post.user.username, @post.user %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
