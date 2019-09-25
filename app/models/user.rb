@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, password_length: 8..70
 
   validate :password_complexity
-  validates :username, presence: true, length: { minimum: 1, maximum: 30 }
+  validates :username, presence: true, length: { minimum: 1, maximum: 50 }
   has_many :posts
 
   extend FriendlyId
