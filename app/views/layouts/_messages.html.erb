@@ -1,5 +1,5 @@
 <% flash.each do |type, msg| %>
-  <div class="alert alert-<%= type.to_s == 'notice' ? 'success' : 'danger' %>">
+  <div class="alert my-3 p-2 alert-<%= type.to_s == 'notice' ? 'success' : 'danger' %>">
     <%= content_tag :div, msg %>
   </div>
 <% end %>
