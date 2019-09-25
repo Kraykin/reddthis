@@ -1,0 +1,14 @@
+<% @posts.each do |post| %>
+  <div class="mt-4 p-2 bg-light">
+    <%= post.content %>
+  </div>
+  <div class="mt-2">
+    <%= link_to 'Show post', post, class: "btn btn-outline-primary" %>
+    <small class="p-2">
+      Submitted <%= time_ago_in_words(post.created_at) %> ago by
+      <%= link_to post.user.username, post.user %>
+    </small>
+  </div>
+<% end %>
+
+<%= will_paginate @posts, list_classes: %w(pagination my-3 justify-content-center) %>
