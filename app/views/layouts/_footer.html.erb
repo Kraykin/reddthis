@@ -1,0 +1,17 @@
+<footer>
+  <nav class="navbar navbar-expand bottom navbar-light bg-light mt-4">
+    <div class="container px-3">
+      <%= link_to "ReadThis", root_path, class: "navbar-brand mb-0 h1 text-uppercase" %>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <li class="font-weight-bold">
+            <%= link_to 'New post', new_post_path, class: "nav-link"  %>
+          </li>
+          <li>
+            <%= link_to 'Users', users_path, class: "nav-link"  %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </nav>
+</footer>
