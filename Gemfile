@@ -3,12 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.4'
 
-gem 'devise',        '4.7.1'
-gem 'friendly_id',   '5.2.5'
-gem 'will_paginate', '3.1.8'
-gem 'faker',         '2.4.0'
-gem 'bootstrap',     '~> 4.3.1'
-gem 'jquery-rails',  '~> 4.3.5'
+gem 'devise',                   '4.7.1'
+gem 'friendly_id',              '5.2.5'
+gem 'will_paginate-bootstrap4', '0.2.2'
+gem 'faker',                    '2.4.0'
+gem 'bootstrap',                '~> 4.3.1'
+gem 'jquery-rails',             '~> 4.3.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

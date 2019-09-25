@@ -8,5 +8,5 @@
       </li>
     <% end %>
   </ul>
-  <%= will_paginate @posts %>
+  <%= will_paginate @posts, list_classes: %w(pagination my-3 justify-content-center) %>
 <% end %>

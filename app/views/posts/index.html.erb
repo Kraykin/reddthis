@@ -1,6 +1,5 @@
 <h1>Posts</h1>
 
-<%= will_paginate %>
 <% @posts.each do |post| %>
   <div class="mt-4 p-2 bg-light">
     <%= post.content %>
@@ -13,4 +12,5 @@
     </small>
   </div>
 <% end %>
-<%= will_paginate %>
+
+<%= will_paginate list_classes: %w(pagination my-3 justify-content-center) %>
