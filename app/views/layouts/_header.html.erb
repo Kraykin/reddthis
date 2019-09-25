@@ -1,6 +1,7 @@
 <header>
   <nav class="navbar navbar-expand navbar-light" style="background-color: #e4e4e7;">
-    <%= link_to "ReadThis", root_path, class: "navbar-brand mb-0 h1 text-uppercase" %>
+    <%= link_to image_tag("logo.png", alt: "Reddthis", width: "25", height: "25", class: "d-inline-block align-top"), root_path %>
+    <%= link_to "eddthis", root_path, class: "navbar-brand mb-0 h1 text-uppercase" %>
     <% if user_signed_in? %>
       <ul class="navbar-nav ml-auto">
         <li class="font-weight-bold">
