@@ -2,10 +2,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, password_length: 8..70
+         :recoverable, :rememberable, :validatable,
+         password_length: 8..70, authentication_keys: [:username]
 
   validate :password_complexity
-  validates :username, presence: true, length: { minimum: 1, maximum: 50 }
+  validates :username, uniqueness: true, length: { minimum: 1, maximum: 50 }
+  validates :email, uniqueness: true
   has_many :posts
 
   extend FriendlyId
