@@ -1,30 +1,29 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 # Users
 User.create!(username:              "adm",
              email:                 "admin@example.com",
              password:              "1q@W3e$R",
-             password_confirmation: "1q@W3e$R")
+             password_confirmation: "1q@W3e$R",
+             confirmed_at:          Time.zone.now)
 
-39.times do |n|
-  username  = Faker::Superhero.name
-  email = "user-#{n+1}@example.com"
+30.times do |n|
+  username  = Faker::Internet.unique.username(separators: %w[- _])
   password = "1qazXSW@"
   User.create!(username:              username,
-               email:                 email,
+               email:                 "#{username}@example.com",
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               confirmed_at:          Time.zone.now)
 end
 
-# Posts
+# Roles
 users = User.take(10)
-40.times do
-  content = Faker::Lorem.paragraph(sentence_count: rand(5..20))
-  users.sample.posts.create!(content: content)
+users.first.admin!
+users[1..3].each { |u| u.moderator! }
+
+# Posts
+content = Faker::Hipster.paragraphs(number: 10)
+5.times do
+  content.each do |post|
+    users.sample.posts.create!(content: post)
+  end
 end

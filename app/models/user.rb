@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   has_many :posts
 
+  enum role: [:user, :moderator, :admin]
+  after_initialize :set_default_role, :if => :new_record?
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 
@@ -29,5 +32,9 @@ class User < ApplicationRecord
     if password.present? and not password.match(/\A(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[[:^alnum:]])/)
      errors.add :password, "must include at least one lowercase letter, one uppercase letter, and one digit"
     end
+  end
+
+  def set_default_role
+    self.role ||= :user
   end
 end
