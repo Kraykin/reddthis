@@ -8,6 +8,13 @@
       Submitted <%= time_ago_in_words(post.created_at) %> ago by
       <%= link_to post.user.username, post.user %>
     </small>
+
+    <% if can? :manage, post %>
+      <div class="btn-group float-right">
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-light" %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 

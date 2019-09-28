@@ -1,3 +1,7 @@
-<h1><%= @user.username %></h1>
-
+<h1>
+  <%= @user.username %>
+  <% if (can? :manage, @user) && !@user.admin? %>
+    <%= link_to 'Destroy', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
+  <% end %>
+</h1>
 <%= render 'shared/posts' %>
