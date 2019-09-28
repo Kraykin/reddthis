@@ -4,8 +4,9 @@ class User < ApplicationRecord
          password_length: 8..70, authentication_keys: [:username]
 
   validate :password_complexity
-  validates :username, uniqueness: true, length: { minimum: 1, maximum: 50 }
-  validates :email, uniqueness: true
+  validates :username, uniqueness: { case_sensitive: false },
+                       length: { minimum: 1, maximum: 50 }
+  validates :email, uniqueness: { case_sensitive: false }
   has_many :posts
 
   enum role: [:user, :moderator, :admin]
