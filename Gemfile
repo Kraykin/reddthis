@@ -7,12 +7,13 @@ ruby '2.6.4'
 gem 'rails', '~> 5.2.3'
 
 gem 'devise'
+gem 'cancancan'
+gem 'activeadmin'
 gem 'friendly_id'
-gem 'will_paginate-bootstrap4'
-gem 'faker'
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'cancancan'
+gem 'will_paginate-bootstrap4'
+gem 'faker'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

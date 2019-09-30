@@ -27,3 +27,4 @@ content = Faker::Hipster.paragraphs(number: 10)
     users.sample.posts.create!(content: post)
   end
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
