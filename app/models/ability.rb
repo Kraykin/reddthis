@@ -11,7 +11,9 @@ class Ability
     can :index, User
     return unless user.moderator? || user.admin?
     can :manage, Post
+    can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "moderator"
     return unless user.admin?
     can :manage, :all
+    can :manage, ActiveAdmin::Page
   end
 end
