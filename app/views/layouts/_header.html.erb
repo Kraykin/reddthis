@@ -3,7 +3,13 @@
     <%= link_to image_tag("logo.png", alt: "Reddthis", width: "25", height: "25", class: "d-inline-block align-top"), root_path %>
     <%= link_to "eddthis", root_path, class: "navbar-brand mb-0 h1 text-uppercase" %>
     <% if user_signed_in? %>
+      <%= link_to current_user.username, current_user, class: "navbar-brand" %>
       <ul class="navbar-nav ml-auto">
+        <li>
+          <% if can? :read, ActiveAdmin::Page %>
+            <%= link_to 'Admin dashboard', admin_dashboard_path, class: "nav-link"  %>
+          <% end %>
+        </li>
         <li class="font-weight-bold">
           <%= link_to 'New post', new_post_path, class: "nav-link"  %>
         </li>
