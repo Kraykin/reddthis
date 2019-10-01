@@ -16,14 +16,18 @@ User.create!(username:              "adm",
 end
 
 # Roles
-users = User.first(5)
+users = User.first(10)
 users.first.admin!
 users[1].moderator!
 
-# Posts
-content = Faker::Hipster.paragraphs(number: 5)
-5.times do
-  content.each do |post|
-    users.sample.posts.create!(content: post)
+# Posts and comments
+posts = Faker::Hipster.paragraphs(number: 10)
+comments = Faker::Hipster.sentences(number: 10)
+3.times do
+  posts.each do |post_content|
+    post = users.sample.posts.create!(content: post_content)
+    3.times { post.comments.create!(content: comments.sample, user: users.sample) }
   end
 end
+last_post = Post.first
+30.times { last_post.comments.create!(content: comments.sample, user: users.sample) }
