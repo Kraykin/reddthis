@@ -11,6 +11,7 @@ class Ability
     can :index, User
     return unless user.moderator? || user.admin?
     can :manage, Post
+    # TODO Set up differentiation of ability in the activeadmin
     can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "moderator"
     return unless user.admin?
     can :manage, :all

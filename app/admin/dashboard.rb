@@ -9,6 +9,8 @@ ActiveAdmin.register_page "Dashboard" do
       end
     end
 
+    # TODO Make a separate control panel for moderator and admin
+
     # Here is an example of a simple dashboard with columns and panels.
     #
     # columns do
