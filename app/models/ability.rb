@@ -6,11 +6,14 @@ class Ability
   def initialize(user)
     can :read, Post
     can :show, User
+    can :show, Comment
     return unless user.present?
     can :create, Post
     can :index, User
+    can :create, Comment
     return unless user.moderator? || user.admin?
     can :manage, Post
+    can :destroy, Comment
     # TODO Set up differentiation of ability in the activeadmin
     can :read, ActiveAdmin::Page, name: "Dashboard", namespace_name: "moderator"
     return unless user.admin?
