@@ -4,12 +4,12 @@ RSpec.describe User, type: :model do
   context 'when create or update' do
     it do
       should validate_presence_of(:username)
-        .with_message("is too short (minimum is 1 character)")
+        .with_message('is too short (minimum is 1 character)')
     end
     it do
       should validate_length_of(:username)
         .is_at_least(1).is_at_most(50)
-        .with_short_message("is too short (minimum is 1 character)")
+        .with_short_message('is too short (minimum is 1 character)')
     end
 
     it { should validate_presence_of(:email) }
@@ -29,13 +29,13 @@ RSpec.describe User, type: :model do
     it do
       should validate_length_of(:password)
         .is_at_least(8).is_at_most(70)
-        .with_short_message("is too short (minimum is 8 characters)")
+        .with_short_message('is too short (minimum is 8 characters)')
     end
 
     it { should validate_confirmation_of(:password) }
 
     it do
-      should_not allow_values("12345678").for(:password)
+      should_not allow_values('12345678').for(:password)
         .with_message(/one lowercase.+one uppercase.+one digit/)
     end
 

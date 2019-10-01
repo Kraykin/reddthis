@@ -8,6 +8,7 @@ class User < ApplicationRecord
                        length: { minimum: 1, maximum: 50 }
   validates :email, uniqueness: { case_sensitive: false }
   has_many :posts
+  has_many :comments
 
   enum role: [:user, :moderator, :admin]
   after_initialize :set_default_role, :if => :new_record?
