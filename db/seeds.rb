@@ -16,15 +16,14 @@ User.create!(username:              "adm",
 end
 
 # Roles
-users = User.take(10)
+users = User.first(5)
 users.first.admin!
-users[1..3].each { |u| u.moderator! }
+users[1].moderator!
 
 # Posts
-content = Faker::Hipster.paragraphs(number: 10)
+content = Faker::Hipster.paragraphs(number: 5)
 5.times do
   content.each do |post|
     users.sample.posts.create!(content: post)
   end
 end
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
