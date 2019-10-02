@@ -1,5 +1,5 @@
 <% @comments.each do |comment| %>
-  <div class="mt-2 p-1 bg-light">
+  <div class="mt-2 p-1 bg-light rounded shadow-sm">
     <%= comment.content %>
 
     <% if can? :manage, comment %>

@@ -62,6 +62,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def upvote
+    @post = Post.find(params[:id])
+    @post.upvote_by current_user
+    redirect_back(fallback_location: root_path)
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.downvote_from current_user
+    redirect_back(fallback_location: root_path)
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
