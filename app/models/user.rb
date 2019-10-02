@@ -2,16 +2,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :confirmable, :validatable,
          password_length: 8..70, authentication_keys: [:username]
+  has_many :posts
+  has_many :comments
+  acts_as_votable
+
+  enum role: [:user, :moderator, :admin]
+  after_initialize :set_default_role, :if => :new_record?
 
   validate :password_complexity
   validates :username, uniqueness: { case_sensitive: false },
                        length: { minimum: 1, maximum: 50 }
   validates :email, uniqueness: { case_sensitive: false }
-  has_many :posts
-  has_many :comments
-
-  enum role: [:user, :moderator, :admin]
-  after_initialize :set_default_role, :if => :new_record?
 
   extend FriendlyId
   friendly_id :username, use: :slugged

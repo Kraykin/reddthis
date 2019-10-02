@@ -14,6 +14,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'will_paginate-bootstrap4'
 gem 'faker'
+gem 'acts_as_votable'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
