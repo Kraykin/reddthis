@@ -1,20 +1,48 @@
+<% # TODO Need a lot of AJAX! %>
 <div class='row mt-3'>
-  <div class='col-1'>
-    <small class='btn-group-vertical btn-group-sm'>
-      <%= link_to '+', upvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
-      <%= link_to '-', downvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
-    </small>
-    <span class='badge badge-light'><%= @user.weighted_score %></span>
-  </div>
-  <div class='col'>
-    <h4>
-      <%= @user.username %>
-      <% if (can? :manage, @user) && !@user.admin? %>
-        <%= link_to 'delete', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge badge-light font-weight-light' %>
+  <ul class='nav nav-tabs' id='myTab' role='tablist'>
+    <li class='navbar-item'>
+      <small class='btn-group-vertical btn-group-sm'>
+        <%= link_to '+', upvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
+        <%= link_to '-', downvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
+      </small>
+      <span class='badge badge-light'><%= @user.weighted_score %></span>
+    </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <li class='nav-item'>
+      <span class='navbar-brand font-weight-bold'><%= @user.username %></span>
+    </li>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <li class='nav-item'>
+      <a class='nav-link active' id='posts-tab' data-toggle='tab' href='#posts' role='tab' aria-controls='posts' aria-selected='true'>Posts</a>
+    </li>
+    <li class='nav-item'>
+      <a class='nav-link' id='comments-tab' data-toggle='tab' href='#comments' role='tab' aria-controls='comments' aria-selected='false'>Comments</a>
+    </li>
+    <li class='nav-item'>
+      <% if @user == current_user || (can? :manage, @user)%>
+        <%= link_to 'Edit profile', edit_user_registration_path, class: 'nav-link btn btn-outline-secondary' %>
       <% end %>
-    </h4>
+    </li>
+    <li class='nav-item'>
+      <% if (can? :manage, @user) && !@user.admin? %>
+        <%= link_to 'Delete profile', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link btn btn-outline-secondary' %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+<div class='tab-content' id='myTabContent'>
+  <div class='tab-pane fade show active' id='posts' role='tabpanel' aria-labelledby='posts-tab'>
+    <div class='row'>
+      <%= render 'shared/posts' %>
+    </div>
+  </div>
+  <div class='tab-pane fade' id='comments' role='tabpanel' aria-labelledby='comments-tab'>
+    <%= render 'shared/comments' %>
   </div>
 </div>
-<div class='row'>
-  <%= render 'shared/posts' %>
-</div>
+

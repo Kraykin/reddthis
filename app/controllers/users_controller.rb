@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @posts = @user.posts.paginate(page: params[:page], per_page: 10)
+    @comments = @user.comments.paginate(page: params[:page], per_page: 10)
   end
 
   def upvote
