@@ -1,11 +1,6 @@
 <% @posts.each do |post| %>
 <div class='mt-3 p-2 bg-light rounded shadow-sm d-flex'>
-  <% # TODO Move voting to partial %>
-  <div class='btn-group-vertical btn-group-sm'>
-    <%= link_to '+', upvote_post_path(post), method: :put, class: 'btn btn-outline-secondary' %>
-    <span class="badge badge-light w-100 border"><%= post.weighted_score %></span>
-    <%= link_to '-', downvote_post_path(post), method: :put, class: 'btn btn-outline-secondary' %>
-  </div>
+  <%= render 'shared/voting', object: post %>
   <div class="mx-2 text-justify"><%= post.content %></div>
 </div>
   <div class="mt-2">
