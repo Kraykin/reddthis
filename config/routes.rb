@@ -8,7 +8,18 @@ Rails.application.routes.draw do
     end
   end
   devise_for :users, :controllers => { :registrations => 'users/registrations' }
-  resources :users, only: [:index, :show]
-  # TODO Refactor comments routes
-  resources :comments
+  # TODO Refactor comments and users routes
+  # resources :users, only: [:index, :show]
+  resources :users do
+    member do
+      put 'upvote',   to: 'users#upvote'
+      put 'downvote', to: 'users#downvote'
+    end
+  end
+  resources :comments do
+    member do
+      put 'upvote',   to: 'comments#upvote'
+      put 'downvote', to: 'comments#downvote'
+    end
+  end
 end
