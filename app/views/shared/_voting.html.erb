@@ -1,5 +1,0 @@
-<div class='btn-group-vertical btn-group-sm'>
-  <%= link_to '+', upvote_post_path(object), method: :put, class: 'btn btn-outline-secondary' %>
-  <span class="badge badge-light w-100 border"><%= object.weighted_score %></span>
-  <%= link_to '-', downvote_post_path(object), method: :put, class: 'btn btn-outline-secondary' %>
-</div>

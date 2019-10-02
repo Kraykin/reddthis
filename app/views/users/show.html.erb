@@ -1,7 +1,20 @@
-<h1>
-  <%= @user.username %>
-  <% if (can? :manage, @user) && !@user.admin? %>
-    <%= link_to 'Destroy', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light" %>
-  <% end %>
-</h1>
-<%= render 'shared/posts' %>
+<div class='row mt-3'>
+  <div class='col-1'>
+    <small class='btn-group-vertical btn-group-sm'>
+      <%= link_to '+', '#', method: :put, class: 'badge badge-light w-100' %>
+      <%= link_to '-', '#', method: :put, class: 'badge badge-light w-100' %>
+    </small>
+    <span class='badge badge-light'>100</span>
+  </div>
+  <div class='col'>
+    <h4>
+      <%= @user.username %>
+      <% if (can? :manage, @user) && !@user.admin? %>
+        <%= link_to 'delete', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge badge-light font-weight-light' %>
+      <% end %>
+    </h4>
+  </div>
+</div>
+<div class='row'>
+  <%= render 'shared/posts' %>
+</div>
