@@ -11,6 +11,7 @@ class Ability
     can :create, Post
     can :index, User
     can :create, Comment
+    can [:upvote, :downvote], [Post, Comment, User]
     return unless user.moderator? || user.admin?
     can :manage, Post
     can :destroy, Comment
