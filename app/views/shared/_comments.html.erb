@@ -10,12 +10,14 @@
         </small>
         <span class='badge badge-light'><%= comment.weighted_score %></span>
       </div>
+
       <div class='col'>
         <small>
           Posted by <%= link_to comment.user.username, comment.user %>
           <%= time_ago_in_words(comment.created_at) %> ago
         </small>
       </div>
+
       <% if can? :manage, comment %>
         <div class='col-2 align-self-end'>
           <%= link_to 'delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge badge-light font-weight-light float-right' %>

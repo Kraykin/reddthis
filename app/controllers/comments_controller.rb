@@ -30,6 +30,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    post = @comment[:post_id]
+    @comment.destroy
+    redirect_to post_path(post), notice: 'Comment was successfully destroyed.'
   end
 
   def upvote
