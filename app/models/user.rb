@@ -2,8 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :lockable,
          :recoverable, :rememberable, :confirmable, :validatable,
          password_length: 8..70, authentication_keys: [:username]
-  has_many :posts
-  has_many :comments
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   acts_as_votable
 
   enum role: [:user, :moderator, :admin]
