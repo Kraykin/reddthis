@@ -1,0 +1,25 @@
+<h1>Editing Comment</h1>
+
+<%= form_with(model: @comment, local: true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div class="alert my-3 p-2 alert-danger">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_area :content, class: "form-control",  rows: "5" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Back", :back, class: "btn btn-light" %>
+  </div>
+<% end %>
+

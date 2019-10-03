@@ -15,6 +15,11 @@ class CommentsController < ApplicationController
   end
 
   def update
+    if @comment.update(comment_params)
+      redirect_to post_path(@comment[:post_id]), notice: 'Post was successfully updated.'
+    else
+      render post_path(@comment[:post_id])
+    end
   end
 
   def destroy

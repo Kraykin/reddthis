@@ -21,7 +21,7 @@
       <% if can? :manage, comment %>
         <div class='col-2 align-self-end'>
           <%= link_to 'delete', comment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'badge badge-light font-weight-light float-right' %>
-          <%= link_to 'edit', edit_post_path(comment), class: 'badge badge-light font-weight-light float-right' %>
+          <%= link_to 'edit', edit_comment_path(comment), class: 'badge badge-light font-weight-light float-right' %>
         </div>
       <% end %>
     </div>
