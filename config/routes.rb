@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: 'posts#index'
   resources :posts do
+    resources :comments, only: [:create]
     member do
       put 'upvote',   to: 'posts#upvote'
       put 'downvote', to: 'posts#downvote'
