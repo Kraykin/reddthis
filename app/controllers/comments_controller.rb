@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@post), notice: 'Comment was successfully created.'
     else
-      redirect_to post_path(@post), notice: "Comment can't be blank"
+      redirect_to post_path(@post), alert: "Comment can't be blank"
     end
   end
 

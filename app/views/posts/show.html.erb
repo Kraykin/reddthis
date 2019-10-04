@@ -27,24 +27,16 @@
   <%= render 'shared/comments' %>
 <% end %>
 
-
-<h5 class='mt-2'>Add comment</h5>
-<% if @post.errors.any? %>
-  <div class="alert my-3 p-2 alert-danger">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-    <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-<%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
-  <div class="form-group">
-    <%= form.text_area :content, class: "form-control",  rows: "5" %>
-  </div>
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
+<% if current_user && (can? :create, Comment)%>
+  <h5 class='mt-2'>Add comment</h5>
+  <%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
+    <div class="form-group">
+      <%= form.text_area :content, class: "form-control",  rows: "5" %>
+    </div>
+    <div class="actions">
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to 'Sign up', new_user_registration_path %> to write a comment
 <% end %>
