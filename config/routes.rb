@@ -1,26 +1,14 @@
 Rails.application.routes.draw do
-  ActiveAdmin.routes(self)
   root to: 'posts#index'
-  resources :posts do
-    resources :comments, only: [:create]
-    member do
-      put 'upvote',   to: 'posts#upvote'
-      put 'downvote', to: 'posts#downvote'
-    end
-  end
+
+  ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :registrations => 'users/registrations' }
-  # TODO Refactor comments and users routes
-  # resources :users, only: [:index, :show]
-  resources :users do
+
+  post '/posts/:post_id/comments', to: 'comments#create', as: :post_comments
+  resources :users, :posts, :comments do
     member do
-      put 'upvote',   to: 'users#upvote'
-      put 'downvote', to: 'users#downvote'
-    end
-  end
-  resources :comments do
-    member do
-      put 'upvote',   to: 'comments#upvote'
-      put 'downvote', to: 'comments#downvote'
+      put 'upvote'
+      put 'downvote'
     end
   end
 end
