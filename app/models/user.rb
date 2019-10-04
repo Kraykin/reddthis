@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   acts_as_votable
+  scope :active_users, -> { where('deleted_at IS NULL') }
 
   enum role: [:user, :moderator, :admin]
   after_initialize :set_default_role, :if => :new_record?

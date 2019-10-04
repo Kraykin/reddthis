@@ -24,13 +24,13 @@
       <a class='nav-link' id='comments-tab' data-toggle='tab' href='#comments' role='tab' aria-controls='comments' aria-selected='false'>Comments</a>
     </li>
     <li class='nav-item'>
-      <% if @user == current_user || (can? :manage, @user)%>
+      <% if @user == current_user %>
         <%= link_to 'Edit profile', edit_user_registration_path, class: 'nav-link btn btn-outline-secondary' %>
       <% end %>
     </li>
     <li class='nav-item'>
       <% if (can? :manage, @user) && !@user.admin? %>
-        <%= link_to 'Delete profile', registration_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link btn btn-outline-secondary' %>
+        <%= link_to 'Delete profile', user_path(@user.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'nav-link btn btn-outline-secondary' %>
       <% end %>
     </li>
   </ul>

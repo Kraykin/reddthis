@@ -4,12 +4,17 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.active_users.paginate(page: params[:page])
   end
 
   def show
     @posts = @user.posts.paginate(page: params[:page], per_page: 10)
     @comments = @user.comments.paginate(page: params[:page], per_page: 10)
+  end
+
+  def destroy
+    @user.soft_delete
+    redirect_to users_path, notice: 'User was successfully deleted.'
   end
 
   def upvote
@@ -25,6 +30,6 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.friendly.find(params[:id])
+    @user = User.friendly.active_users.find(params[:id])
   end
 end
