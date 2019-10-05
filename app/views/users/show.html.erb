@@ -1,10 +1,9 @@
-<% # TODO Need a lot of AJAX! %>
 <div class='row mt-3'>
   <ul class='nav nav-tabs' id='myTab' role='tablist'>
     <li class='navbar-item'>
       <small class='btn-group-vertical btn-group-sm'>
-        <%= link_to '+', upvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
-        <%= link_to '-', downvote_user_path(@user), method: :put, class: 'badge badge-light w-100' %>
+        <%= link_to '+', upvote_user_path(@user), method: :put, remote: true, class: 'badge badge-light w-100' %>
+        <%= link_to '-', downvote_user_path(@user), method: :put, remote: true, class: 'badge badge-light w-100' %>
       </small>
       <span class='badge badge-light'><%= @user.weighted_score %></span>
     </li>

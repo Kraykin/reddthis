@@ -6,8 +6,8 @@
     <div class='row'>
       <div class='col-1'>
         <small class='btn-group-vertical btn-group-sm'>
-          <%= link_to '+', upvote_post_path(post), method: :put, class: 'badge badge-light w-100' %>
-          <%= link_to '-', downvote_post_path(post), method: :put, class: 'badge badge-light w-100' %>
+          <%= link_to '+', upvote_post_path(post), method: :put, remote: true, class: 'badge badge-light w-100' %>
+          <%= link_to '-', downvote_post_path(post), method: :put, remote: true, class: 'badge badge-light w-100' %>
         </small>
         <span class='badge badge-light'><%= post.weighted_score %></span>
       </div>
