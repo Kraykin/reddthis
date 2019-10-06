@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
+  context 'when create or update' do
+    let(:post) { create(:post_with_comments) }
+
+    it { should belong_to :user }
+    it { should belong_to :post }
+    it { should validate_presence_of(:content) }
+    it { expect(post.comments.first.content).to eq('Comment body 1') }
+  end
 end

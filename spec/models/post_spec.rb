@@ -6,6 +6,6 @@ RSpec.describe Post, type: :model do
 
     it { should belong_to :user }
     it { should validate_presence_of(:content) }
-    it { expect(user.posts.last.content).to eq('Post body 1') }
+    it { expect(user.posts.last.content).to eq('Post body 2') }
   end
 end

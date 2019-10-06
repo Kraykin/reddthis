@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    username { "first-user" }
-    email { "first-user@example.com" }
+    username { Faker::Internet.unique.username(separators: %w[- _]) }
+    email { "#{username}@example.com" }
     password { "1q@W3e$R" }
-    password_confirmation { "1q@W3e$R" }
+    password_confirmation { password }
     confirmed_at { Time.zone.now }
 
     factory :user_with_posts do
