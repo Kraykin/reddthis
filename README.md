@@ -58,4 +58,4 @@ This is a training application written by me for experimentation.
     * использование существующей таблицы пользователей, без необходимости создания новых пользователей для работы с панелью администратора
 * FriendlyId – для использования имени пользователя в URL профиля пользователя
 * Bootstrap 4 – для настройки стиля сайта
-* RSpec, ShouldaMatchers, FactoryBot и Faker – использованы в тестах
+* RSpec, ShouldaMatchers, Capybara, Selenium, DatabaseCleaner, FactoryBot и Faker – использованы в тестах
