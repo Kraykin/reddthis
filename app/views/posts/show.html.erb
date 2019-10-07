@@ -27,7 +27,7 @@
   <%= render 'shared/comments' %>
 <% end %>
 
-<% if current_user && (can? :create, Comment)%>
+<% if current_user && (can? :create, Comment) %>
   <h5 class='mt-2'>Add comment</h5>
   <%= form_with(model: [@post, @post.comments.build]) do |form| %>
     <div class="form-group">

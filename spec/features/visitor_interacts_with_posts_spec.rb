@@ -24,6 +24,8 @@ feature 'Visitor interacts with posts' do
     expect(page).to have_text 'You need to sign in'
   end
 
+  given(:rating_xpath) { "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span" }
+
   feature 'cannot positively rate post', js: true do
     scenario 'from main page' do
       visit root_path
@@ -40,7 +42,6 @@ feature 'Visitor interacts with posts' do
     scenario 'from user profile' do
       visit '/users/1'
       find(:xpath, "//*[contains(@href, '/posts/1/upvote')]").click
-      rating_xpath = "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span"
       expect(find(:xpath, rating_xpath).text).to have_text '0'
     end
   end
@@ -61,7 +62,6 @@ feature 'Visitor interacts with posts' do
     scenario 'from user profile' do
       visit '/users/1'
       find(:xpath, "//*[contains(@href, '/posts/1/downvote')]").click
-      rating_xpath = "//*[@*='col-1' and */*[contains(@href, '/1/down')]]/span"
       expect(find(:xpath, rating_xpath).text).to have_text '0'
     end
   end
