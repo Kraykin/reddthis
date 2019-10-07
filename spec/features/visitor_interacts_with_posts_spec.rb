@@ -6,16 +6,18 @@ feature 'Visitor interacts with posts' do
   end
 
   feature 'visit post' do
+    given(:post_text) { page.find(:xpath, "//div[text()='Post body']") }
+
     scenario 'from main page' do
       visit root_path
-      visit find_link('Post body')[:href]
-      expect(page).to have_text 'Post body'
+      click_link 'Post body'
+      expect(post_text).to have_text 'Post body'
     end
 
     scenario 'from user profile' do
       visit '/users/1'
-      visit find_link('Post body')[:href]
-      expect(page).to have_text 'Post body'
+      click_link 'Post body'
+      expect(post_text).to have_text 'Post body'
     end
   end
 

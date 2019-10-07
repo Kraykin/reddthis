@@ -8,13 +8,13 @@ feature 'Visitor interacts with users' do
   feature 'visit user profile' do
     scenario 'from main page' do
       visit root_path
-      visit find_link('test_user')[:href]
+      click_link 'test_user'
       expect(page).to have_text 'test_user'
     end
 
     scenario 'from post page' do
       visit '/posts/1'
-      visit find_link('test_user')[:href]
+      click_link 'test_user'
       expect(page).to have_text 'test_user'
     end
   end

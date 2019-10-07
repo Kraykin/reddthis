@@ -13,7 +13,7 @@ feature 'Visitor interacts with comments' do
 
     scenario 'from user profile', js: true do
       visit '/users/1'
-      find_link('Comments').click
+      click_link 'Comments'
       expect(page).to have_text 'Comment body'
     end
   end
