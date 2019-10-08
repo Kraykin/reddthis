@@ -23,7 +23,9 @@ feature 'Visitor interacts with comments' do
     expect(page).not_to have_button 'Create Comment'
   end
 
-  given(:rating_xpath) { "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span" }
+  given(:rating_xpath) do
+    "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span"
+  end
 
   feature 'cannot positively rate comment', js: true do
     scenario 'from post page' do

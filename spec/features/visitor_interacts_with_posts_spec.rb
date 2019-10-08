@@ -6,7 +6,9 @@ feature 'Visitor interacts with posts' do
   end
 
   feature 'visit post' do
-    given(:post_text) { page.find(:xpath, "//div[text()='Post body']") }
+    given(:post_text) do
+      page.find(:xpath, "//div[@*='mx-2 text-justify' and not(*)]")
+    end
 
     scenario 'from main page' do
       visit root_path
@@ -26,7 +28,9 @@ feature 'Visitor interacts with posts' do
     expect(page).to have_text 'You need to sign in'
   end
 
-  given(:rating_xpath) { "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span" }
+  given(:rating_xpath) do
+    "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span"
+  end
 
   feature 'cannot positively rate post', js: true do
     scenario 'from main page' do
