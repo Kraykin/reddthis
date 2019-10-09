@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = User.active_users.paginate(page: params[:page])
+    @users = User.active_users.order(:cached_weighted_score => :desc)
+                 .includes(:posts, :comments).paginate(page: params[:page])
   end
 
   def show

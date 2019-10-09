@@ -1,15 +1,15 @@
 <h3 class='text-center'>All users</h3>
 <div class='row justify-content-md-center'>
   <div class='list-group col-8'>
-    <% @users.order(:cached_weighted_score => :desc).each do |user| %>
+    <% @users.each do |user| %>
       <button type='button' class='list-group-item list-group-item-action d-flex justify-content-between align-items-center'>
         <span class='badge badge-secondary badge-pill'>
           <%= user.weighted_score %> carma
         </span>
         <%= link_to user.username, user, class: 'text-decoration-none stretched-link text-wrap' %>
         <span class='badge badge-secondary badge-pill'>
-          <%= pluralize(user.posts.count, 'post') %>
-          and <%= pluralize(user.comments.count, 'comment') %>
+          <%= pluralize(user.posts.size, 'post') %>
+          and <%= pluralize(user.comments.size, 'comment') %>
         </span>
       </button>
     <% end %>
