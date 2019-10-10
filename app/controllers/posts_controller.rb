@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments.paginate(page: params[:page])
+    @comments = @post.comments.includes(:user).paginate(page: params[:page])
   end
 
   def new
