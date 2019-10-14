@@ -16,6 +16,7 @@ gem 'will_paginate-bootstrap4'
 gem 'devise-bootstrap-views'
 gem 'faker'
 gem 'acts_as_votable'
+gem 'carrierwave', '~> 2.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

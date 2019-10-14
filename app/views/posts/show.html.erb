@@ -5,6 +5,7 @@
     <%= link_to '-', downvote_post_path(@post), method: :put, remote: true, class: 'badge badge-light w-100' %>
   </div>
   <div class='mx-2 text-justify'><%= @post.content %></div>
+  <%= image_tag @post.image.url if @post.image? %>
 </div>
 
 <div class='row my-2'>
