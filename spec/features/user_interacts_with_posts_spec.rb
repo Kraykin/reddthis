@@ -37,6 +37,16 @@ feature 'User interacts with posts' do
     end
   end
 
+  scenario 'create post' do
+    visit root_path
+    find(:xpath, "//a[@*='btn btn-secondary' and text()='New post']").click
+
+    fill_in :post_content, with: 'Own new post body'
+    click_button 'Create Post'
+
+    expect(page).to have_text 'Post was successfully created'
+  end
+
   given(:own_rating_xpath) do
     "//*[@*='col-1' and */*[contains(@href, '/1/up')]]/span"
   end
@@ -52,8 +62,7 @@ feature 'User interacts with posts' do
   feature 'positively rate own post', js: true do
     scenario 'from main page' do
       visit root_path
-      find(:xpath, own_upvote_xpath).click
-      sleep 0.5
+      find(:xpath, own_upvote_xpath).click(wait: 0.5)
       expect(find(:xpath, own_rating_xpath).text).to have_text '1'
     end
 
@@ -73,8 +82,7 @@ feature 'User interacts with posts' do
   feature 'negatively rate own post', js: true do
     scenario 'from main page' do
       visit root_path
-      find(:xpath, own_downvote_xpath).click
-      sleep 0.5
+      find(:xpath, own_downvote_xpath).click(wait: 0.5)
       expect(find(:xpath, own_rating_xpath).text).to have_text '-1'
     end
 
