@@ -4,4 +4,5 @@ class Comment < ApplicationRecord
   acts_as_votable
   default_scope -> { order(created_at: :asc) }
   validates :content, presence: true
+  mount_uploader :image, ImageUploader
 end

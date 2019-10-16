@@ -1,6 +1,7 @@
 <% @comments.each do |comment| %>
   <div class='mt-3 p-1 bg-light rounded shadow-sm'>
     <%= comment.content %>
+    <%= image_tag comment.image.url if comment.image? %>
 
     <div class='row'>
       <div class='col-1'>
