@@ -2,7 +2,9 @@
   <div class='mt-4 p-1 bg-light rounded shadow-sm w-100'>
     <div class='mx-2 text-justify'>
       <%= link_to post.content, post, class: 'text-decoration-none text-dark' %>
-      <%= image_tag post.image.url if post.image? %>
+      <% if post.image? %>
+        <%= link_to (image_tag post.image.small.url), post.image.url %>
+      <% end %>
     </div>
     <div class='row'>
       <div class='col-1'>
